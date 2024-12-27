@@ -49,9 +49,7 @@ body {
     color: var(--text-color);
     position: relative;
     overflow-x: hidden;
-    background-image: 
-        radial-gradient(var(--first-color-alt) 1px, transparent 1px),
-        radial-gradient(var(--first-color-alt) 1px, transparent 1px);
+    background-color: #8B4513;
     background-position: 0 0, 25px 25px;
     background-size: 50px 50px;
     background-attachment: fixed;
@@ -187,6 +185,7 @@ img {
     padding-top: 7rem;
     position: relative;
     background: linear-gradient(160deg, var(--body-color) 0%, var(--container-color) 100%);
+    margin-top: var(--header-height);
 }
 
 .home__container {
@@ -199,25 +198,29 @@ img {
 }
 
 .home__title {
-    font-size: var(--biggest-font-size);
+    font-size: clamp(1.75rem, 5vw, var(--biggest-font-size));
     font-family: var(--title-font);
     color: var(--title-color);
     margin-bottom: 1rem;
+    line-height: 1.2;
 }
 
 .home__title span {
     display: block;
-    font-size: var(--h2-font-size);
+    font-size: clamp(1.25rem, 3vw, var(--h2-font-size));
     color: var(--first-color);
+    margin-top: 0.5rem;
 }
 
 .home__description {
     margin-bottom: 2rem;
+    font-size: clamp(0.875rem, 2vw, var(--normal-font-size));
+    padding-inline: 1rem;
 }
 
 .home__images {
     position: relative;
-    width: 300px;
+    width: min(300px, 90%);
     justify-self: center;
 }
 
@@ -228,8 +231,8 @@ img {
 
 .home__blob {
     position: absolute;
-    width: 320px;
-    height: 320px;
+    width: 100%;
+    height: 100%;
     background-color: var(--first-color);
     opacity: .1;
     border-radius: 12rem;
@@ -553,50 +556,13 @@ img {
 }
 
 /* Add subtle pattern overlay */
-.section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.5;
-    z-index: 0;
-}
 
-.section > * {
-    position: relative;
-    z-index: 1;
-}
 
 @media screen and (min-width: 1024px) {
     .section {
-        margin: 4rem 2rem;
+        margin: 7rem 2rem;
         padding: 6rem 4rem;
     }
-}
-
-/* Add side decorations */
-.side-decoration {
-    position: fixed;
-    height: 100vh;
-    width: 200px;
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.1;
-}
-
-.side-decoration--left {
-    left: 0;
-    background: linear-gradient(90deg, var(--first-color) 0%, transparent 100%),
-                repeating-linear-gradient(45deg, var(--first-color-alt) 0px, var(--first-color-alt) 1px, transparent 1px, transparent 10px);
-}
-
-.side-decoration--right {
-    right: 0;
-    background: linear-gradient(-90deg, var(--first-color) 0%, transparent 100%),
-                repeating-linear-gradient(-45deg, var(--first-color-alt) 0px, var(--first-color-alt) 1px, transparent 1px, transparent 10px);
 }
 
 @media screen and (max-width: 1400px) {
@@ -614,5 +580,174 @@ img {
 @media screen and (max-width: 768px) {
     .side-decoration {
         width: 50px;
+    }
+}
+
+/* ==================== CONTACT ==================== */
+.contact__container {
+    padding-bottom: 3rem;
+}
+
+.contact__content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    padding-top: 2rem;
+}
+
+.contact__info {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.contact__card {
+    background-color: var(--container-color);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    box-shadow: 0 4px 12px hsla(0, 0%, 20%, .1);
+    transition: .4s;
+}
+
+.contact__card:hover {
+    box-shadow: 0 6px 16px hsla(0, 0%, 20%, .15);
+    transform: translateY(-0.25rem);
+}
+
+.contact__card-icon {
+    font-size: 2rem;
+    color: var(--first-color);
+    margin-bottom: .75rem;
+}
+
+.contact__card-title {
+    font-size: var(--h3-font-size);
+    margin-bottom: .5rem;
+}
+
+.contact__card-data {
+    font-size: var(--small-font-size);
+}
+
+.contact__form {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.contact__form-group {
+    display: grid;
+    gap: .75rem;
+}
+
+.contact__form-label {
+    font-size: var(--small-font-size);
+    font-weight: 500;
+}
+
+.contact__form-input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--container-color);
+    border: 2px solid transparent;
+    font-size: var(--normal-font-size);
+    font-family: var(--body-font);
+    transition: .3s;
+}
+
+.contact__form-input:focus {
+    border: 2px solid var(--first-color);
+    outline: none;
+}
+
+.contact__form-textarea {
+    height: 11rem;
+    resize: none;
+    margin-bottom: 1rem;
+}
+
+.contact__form-button {
+    justify-self: center;
+    cursor: pointer;
+}
+
+.contact__form-button i {
+    margin-left: .5rem;
+}
+
+/* Responsive design for contact section */
+@media screen and (max-width: 992px) {
+    .contact__content {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact__info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contact__info {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .contact__form {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .contact__form-group {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Update media queries for home section */
+@media screen and (max-width: 576px) {
+    .home {
+        padding-top: 2rem;
+        margin-top: calc(var(--header-height) + 2rem);
+    }
+    
+    .home__container {
+        padding-inline: 1rem;
+    }
+    
+    .button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width: 767px) {
+    .home__container {
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    .home__content {
+        text-align: initial;
+    }
+    
+    .home__description {
+        padding-inline: 0;
+    }
+    
+    .button {
+        width: auto;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .home__images {
+        width: 500px;
+    }
+    
+    .home__blob {
+        width: 520px;
+        height: 520px;
     }
 }
